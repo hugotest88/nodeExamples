@@ -34,7 +34,7 @@ Here is an example of the structure in general terms:
 ```
 
 Each **example** has a few properties (if one doesn't, please [let us know](https://github.com/nodejs/examples/issues/new)):
-
+ 
 - Usable example code.
 - Passing tests.
 - A README.md that explains what the example does and how to use it.
