@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  trivy: aquasecurity/trivy@1.0.0
+  trivy: aquasecurity/trivy@0.4.0
 
 jobs:
   hello-world:
