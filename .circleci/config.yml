@@ -1,8 +1,5 @@
 version: 2.1
 
-orbs:
-  trivy: aquasecurity/trivy@0.4.0
-
 jobs:
   hello-world:
     docker:
@@ -20,10 +17,17 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - trivy/scan:
-          path: .
-          exit-code: 1
-          no-progress: true
+      - run:
+          name: Install Trivy
+          command: |
+            sudo apt-get update && sudo apt-get install -y wget apt-transport-https gnupg lsb-release
+            wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+            echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+            sudo apt-get update
+            sudo apt-get install -y trivy
+      - run:
+          name: Run Trivy Scan
+          command: trivy fs --exit-code 1 --no-progress .
 
 workflows:
   version: 2
