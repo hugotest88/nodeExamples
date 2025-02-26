@@ -8,6 +8,9 @@ jobs:
       - run:
           name: Say Hello
           command: echo "Hello, World!"
+      - run:
+          name: Say Hi Team
+          command: echo "Hi, Team!"
 
 workflows:
   version: 2
