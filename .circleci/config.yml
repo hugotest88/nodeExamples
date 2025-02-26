@@ -14,9 +14,13 @@ jobs:
 
   trivy-scan:
     docker:
-      - image: aquasec/trivy:latest
+      - image: cimg/base:stable
     steps:
       - checkout
+      - run:
+          name: Install Trivy
+          command: |
+            curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
       - run:
           name: Run Trivy Scan
           command: trivy filesystem --exit-code 1 --no-progress .
