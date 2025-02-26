@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  trivy: aquasecurity/trivy@1.0.0
+
 jobs:
   hello-world:
     docker:
@@ -17,13 +20,10 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - run:
-          name: Install Trivy
-          command: |
-            sudo curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin
-      - run:
-          name: Run Trivy Scan
-          command: trivy filesystem --exit-code 1 --no-progress .
+      - trivy/scan:
+          path: .
+          exit-code: 1
+          no-progress: true
 
 workflows:
   version: 2
