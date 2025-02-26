@@ -12,8 +12,18 @@ jobs:
           name: Say Hi Team
           command: echo "Hi, Team!"
 
+  trivy-scan:
+    docker:
+      - image: aquasec/trivy:latest
+    steps:
+      - checkout
+      - run:
+          name: Run Trivy Scan
+          command: trivy filesystem --exit-code 1 --no-progress .
+
 workflows:
   version: 2
-  hello:
+  hello_and_scan:
     jobs:
       - hello-world
+      - trivy-scan
