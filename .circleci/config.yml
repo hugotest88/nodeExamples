@@ -21,6 +21,10 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
+      - run: circleci run release plan --environment-name=<some-environment-name> --component-name=<some-component-name> --target-version=<some-version-name>
+      - run: circleci run release update --status=running
+      - run: circleci run release update --status=SUCCESS
+
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
