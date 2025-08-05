@@ -18,7 +18,7 @@ jobs:
     steps:
       # Checkout the code as the first step.
       - checkout
-      - run: circleci run release plan --environment-name=<some-environment-name> --component-name=<some-component-name> --target-version=<some-version-name>
+      - run: circleci run release plan --environment-name="test1234" --target-version="1.1"
       - run: circleci run release update --status=running
       - run: circleci run release update --status=SUCCESS
 
