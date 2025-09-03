@@ -1,4 +1,4 @@
-const fakeNames = require('./fake-names')
+// const fakeNames = require('./fake-names')
 const utils = require('../lib/utils')
 const fs = require('fs')
 
